@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <meta
+      name="facebook-domain-verification"
+      content="1pjgx66n8p6enx7bcfrxnaysvg53bf"
+    />
+    <title>Mujer Divina</title>
+
+    <style>
+      .home {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        background: url(https://demo.web3canvas.com/themeforest/tomato/img/bg2.png)
+          no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="home">
+      <div class="container" id="app">
+        <div class="vh-100 d-flex flex-column justify-content-center">
+          <div class="row">
+            <div class="col-md-6 offset-md-3">
+              <img
+                src="https://mujerdivina.netlify.app/img/nav-logo.png"
+                class="img-fluid d-block mx-auto"
+                alt="logo"
+              />
+            </div>
+          </div>
+
+          <div class="row mt-5" v-if="food_menu">
+            <div
+              class="col-md-4 offset-md-2 d-flex justify-content-center mb-5"
+            >
+              <a :href="food_menu">
+                <button
+                  style="background-color: #1f2838; border-color: #1f2838"
+                  type="button"
+                  class="btn btn-primary btn-lg"
+                >
+                  Menú de alimentos
+                </button>
+              </a>
+            </div>
+            <div
+              class="col-md-4 d-flex justify-content-center mb-5"
+              v-if="drinks_menu"
+            >
+              <a :href="drinks_menu">
+                <button
+                  style="background-color: #1f2838; border-color: #1f2838"
+                  type="button"
+                  class="btn btn-primary btn-lg"
+                >
+                  Menú de bebidas
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+    -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          food_menu: "",
+          drinks_menu: "",
+        },
+        created() {
+          this.getMenu();
+        },
+        methods: {
+          getMenu() {
+            var that = this;
+            $.ajax({
+              url: "https://app.mujerdivina.com.mx/api/menu",
+              success: function (result) {
+                that.food_menu =
+                  "https://mujerdivina.com.mx/app/assets/" + result.food_menu;
+                that.drinks_menu =
+                  "https://mujerdivina.com.mx/app/assets/" + result.drinks_menu;
+              },
+            });
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
