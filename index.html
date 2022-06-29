@@ -39,14 +39,14 @@
           <div class="row">
             <div class="col-md-6 offset-md-3">
               <img
-                src="https://mujerdivina.netlify.app/img/nav-logo.png"
+                src="https://files.inovuz.com/files/misto/misto.png"
                 class="img-fluid d-block mx-auto"
                 alt="logo"
               />
             </div>
           </div>
 
-          <div class="row mt-5" v-if="food_menu">
+          <div class="row mt-4" v-if="food_menu">
             <div
               class="col-md-4 offset-md-2 d-flex justify-content-center mb-5"
             >
@@ -116,7 +116,7 @@
           getMenu() {
             var that = this;
             $.ajax({
-              url: "https://app.mujerdivina.com.mx/api/menu",
+              url: "https://app.misto.com.mx/api/menu",
               success: function (result) {
                 that.food_menu =
                   "https://files.inovuz.com/files/" + result.food_menu;
